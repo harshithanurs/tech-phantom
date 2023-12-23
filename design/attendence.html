@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Meeting Attendance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .attendance-form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="submit"] {
+            padding: 8px 16px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .absent-message {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e74c3c;
+            color: #fff;
+            border-radius: 5px;
+            text-align: center;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="attendance-form">
+        <h2>Online Meeting Attendance</h2>
+        <form id="attendanceForm">
+            <label for="student1">
+                <input type="checkbox" id="student1" name="student1"> Student 1
+            </label>
+            <label for="student2">
+                <input type="checkbox" id="student2" name="student2"> Student 2
+            </label>
+            <label for="student3">
+                <input type="checkbox" id="student3" name="student3"> Student 3
+            </label>
+            <input type="submit" value="Submit">
+        </form>
+        <div id="absentMessage" class="absent-message"></div>
+    </div>
+
+    <script>
+        document.getElementById('attendanceForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const student1 = document.getElementById('student1').checked;
+            const student2 = document.getElementById('student2').checked;
+            const student3 = document.getElementById('student3').checked;
+
+            const absentMessage = document.getElementById('absentMessage');
+            absentMessage.style.display = 'none';
+
+            // Check for absences
+            let absentStudents = [];
+            if (!student1) {
+                absentStudents.push('Student 1');
+            }
+            if (!student2) {
+                absentStudents.push('Student 2');
+            }
+            if (!student3) {
+                absentStudents.push('Student 3');
+            }
+
+            if (absentStudents.length > 0) {
+                absentMessage.textContent =` Absent Students: ${absentStudents.join(', ')}`;
+                absentMessage.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

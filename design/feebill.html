@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fee Payment</title>
+</head>
+<body>
+
+    <h1>Fee Payment Status</h1>
+
+    <label for="paymentStatus">Is the fee payment done?</label>
+    <select id="paymentStatus">
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+
+    <button onclick="checkPayment()">Check Payment</button>
+
+    <div id="invoice" style="display: none;">
+        <h2>Invoice</h2>
+        <!-- Include your invoice details here -->
+        <p>Amount: $100</p>
+        <p>Transaction ID: 123456789</p>
+       
+                   <a href="invoice.html"><i class="fee"></i><span>PRINT</span></a>
+
+    </div>
+
+    <div id="paymentMessage" style="display: none;">
+        <p>Please make the payment to proceed.</p>
+    </div>
+
+    <script>
+        function checkPayment() {
+            var paymentStatus = document.getElementById("paymentStatus").value;
+            var invoiceDiv = document.getElementById("invoice");
+            var paymentMessageDiv = document.getElementById("paymentMessage");
+
+            if (paymentStatus === "yes") {
+                invoiceDiv.style.display = "block";
+                paymentMessageDiv.style.display = "none";
+            } else {
+                invoiceDiv.style.display = "none";
+                paymentMessageDiv.style.display = "block";
+            }
+        }
+    </script>
+
+</body>
+</html>
+
+
+
+
+   

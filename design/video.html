@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Video Conference</title>
+    <style>
+        
+        video {
+            width: 50%;
+            border: 1px solid #ccc;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Video Conference</h1>
+    <div>
+        <select id="cameraList"></select>
+        <button id="muteButton">Mute</button>
+        <button id="endCallButton">End Call</button>
+    </div>
+    <div>
+        <video id="localVideo" autoplay></video>
+    </div>
+
+    <script>
+        const localVideo = document.getElementById('localVideo');
+        const muteButton = document.getElementById('muteButton');
+        const endCallButton = document.getElementById('endCallButton');
+        const cameraList = document.getElementById('cameraList');
+
+        
+        navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+            .then(function(stream) {
+                localVideo.srcObject = stream;
+                const devices = navigator.mediaDevices.enumerateDevices();
+                devices.then(deviceInfos => {
+                    deviceInfos.forEach(device => {
+                        if (device.kind === 'videoinput') {
+                            const option = document.createElement('option');
+                            option.value = device.deviceId;
+                            option.text = device.label || Camera ${cameraList.length + 1};
+                            cameraList.appendChild(option);
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching devices:', error);
+                });
+            })
+            .catch(function(error) {
+                console.error('Error accessing user media:', error);
+            });
+
+       
+        let isMuted = false;
+        muteButton.addEventListener('click', function() {
+            const tracks = localVideo.srcObject.getAudioTracks();
+            tracks.forEach(track => {
+                track.enabled = !track.enabled;
+                isMuted = track.enabled ? false : true;
+                muteButton.textContent = isMuted ? 'Unmute' : 'Mute';
+            });
+        });
+
+        
+        endCallButton.addEventListener('click', function() {
+            localVideo.srcObject.getTracks().forEach(track => track.stop());
+            localVideo.srcObject = null;
+           
+        });
+    </script>
+</body>
+</html>

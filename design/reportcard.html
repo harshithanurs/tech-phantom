@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Card Updating</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        #report-card-form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div id="report-card-form">
+    <h2>Update Report Card</h2>
+    <form id="update-form">
+        <label for="student-name">Student Name:</label>
+        <input type="text" id="student-name" name="student-name" required>
+
+        <label for="grade">Grade:</label>
+        <select id="grade" name="grade" required>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+            <option value="F">F</option>
+        </select>
+
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" required>
+
+        <label for="teacher">Teacher Name:</label>
+        <input type="text" id="teacher" name="teacher" required>
+
+        <button type="button" onclick="updateReportCard()">Update Report Card</button>
+    </form>
+</div>
+
+<script>
+    function updateReportCard() {
+        // Get values from the form
+        var studentName = document.getElementById("student-name").value;
+        var grade = document.getElementById("grade").value;
+        var subject = document.getElementById("subject").value;
+        var teacher = document.getElementById("teacher").value;
+
+        // Perform the necessary actions to update the report card (replace with your logic)
+
+        // For now, just display a message (replace this with actual update logic)
+        alert("Report card updated for " + studentName + " in " + subject + " with grade " + grade);
+    }
+</script>
+
+</body>
+</html>

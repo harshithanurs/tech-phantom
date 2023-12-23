@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher Feedback</title>
+</head>
+<body>
+    <h2>Teacher Feedback</h2>
+    <form id="feedbackForm">
+        <label for="teacherName">Teacher Name:</label><br>
+        <input type="text" id="teacherName" name="teacherName" required><br><br>
+        
+        <label for="subject">Subject/Class:</label><br>
+        <input type="text" id="subject" name="subject" required><br><br>
+        
+        <label for="feedback">Feedback:</label><br>
+        <textarea id="feedback" name="feedback" rows="4" cols="50" required></textarea><br><br>
+        
+        <label for="rating">Rating (1-5):</label><br>
+        <input type="number" id="rating" name="rating" min="1" max="5" required><br><br>
+        
+        <input type="submit" value="Submit Feedback">
+    </form>
+
+    <script>
+        document.getElementById('feedbackForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevents default form submission
+
+            // Get input values
+            const teacherName = document.getElementById('teacherName').value;
+            const subject = document.getElementById('subject').value;
+            const feedback = document.getElementById('feedback').value;
+            const rating = document.getElementById('rating').value;
+
+            // Process the feedback (you can send it to a server or perform other actions)
+            console.log('Teacher Name:', teacherName);
+            console.log('Subject/Class:', subject);
+            console.log('Feedback:', feedback);
+            console.log('Rating:', rating);
+            // You can send this data to a server for storage or further processing
+        });
+    </script>
+</body>
+</html>
